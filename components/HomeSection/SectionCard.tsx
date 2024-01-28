@@ -29,7 +29,7 @@ const HomeSectionCard: FC<Props> = ({
       <Box
         borderRadius="2xl"
         border="1px solid"
-        borderColor="gray.200"
+        borderColor="rytuGreen.100"
         shadow="sm"
         w="full"
         h="full"

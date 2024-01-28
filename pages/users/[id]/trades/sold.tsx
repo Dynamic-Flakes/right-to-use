@@ -104,7 +104,7 @@ const TradeSoldPage: NextPage = () => {
                   borderRadius="full"
                   boxShadow="none"
                   border="1px"
-                  borderColor="gray.200"
+                  borderColor="rytuGreen.100"
                   _hover={{
                     bgColor: 'gray.100',
                   }}

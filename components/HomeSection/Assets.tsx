@@ -95,13 +95,15 @@ const AssetsHomeSection: FC<Props> = ({ date }) => {
   return (
     <Stack spacing={6}>
       <Flex flexWrap="wrap" align="center" justify="space-between" gap={4}>
-        <Heading as="h2" variant="subtitle" color="brand.black">
+        <Heading as="h2" variant="subtitle" color="rytuRed.50">
           {t('home.nfts.title')}
         </Heading>
         <Link href="/explore">
           <Button
             variant="outline"
             colorScheme="gray"
+            backgroundColor="rytuGreen.50"
+            borderColor="rytuGreen.100"
             rightIcon={<Icon as={HiArrowNarrowRight} h={5} w={5} />}
             iconSpacing="10px"
           >

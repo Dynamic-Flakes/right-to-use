@@ -65,7 +65,7 @@ const NavItemMobile: FC<HTMLAttributes<any>> = ({ children, ...props }) => {
       pr={4}
       pl={3}
       fontWeight="medium"
-      borderColor="gray.200"
+      borderColor="rytuGreen.100"
       borderLeftWidth="4px"
       color="gray.600"
       cursor="pointer"
@@ -147,7 +147,7 @@ const DrawerMenu: FC<{
                       pr={4}
                       pl={3}
                       fontWeight="medium"
-                      borderColor="gray.200"
+                      borderColor="rytuGreen.100"
                       borderLeftWidth="4px"
                       color="gray.600"
                       _hover={{
@@ -193,7 +193,7 @@ const DrawerMenu: FC<{
                       pr={4}
                       pl={3}
                       fontWeight="medium"
-                      borderColor="gray.200"
+                      borderColor="rytuGreen.100"
                       borderLeftWidth="4px"
                       color="gray.600"
                       _hover={{
@@ -474,45 +474,47 @@ const Navbar: FC<{
           </Flex>
           {account ? (
             <HStack spacing={2}>
-              <ActivityMenu account={account.address} />
-              <Link href="/chat">
-                <IconButton
-                  aria-label="Notifications"
-                  variant="ghost"
-                  colorScheme="gray"
-                  rounded="full"
-                  icon={
-                    <Icon as={FaEnvelope} color="brand.black" h={4} w={4} />
-                  }
-                />
-              </Link>
-              <Link href="/notification">
-                <IconButton
-                  aria-label="Notifications"
-                  variant="ghost"
-                  colorScheme="gray"
-                  rounded="full"
-                  position="relative"
-                >
-                  <Flex>
-                    <Icon as={FaBell} color="brand.black" h={4} w={4} />
-                    {account.notifications.totalCount > 0 && (
-                      <Flex
-                        position="absolute"
-                        top={2}
-                        right={2}
-                        h={2.5}
-                        w={2.5}
-                        align="center"
-                        justify="center"
-                        rounded="full"
-                        bgColor="red.500"
-                      />
-                    )}
-                  </Flex>
-                </IconButton>
-              </Link>
-              {cartButton}
+              <Box border="1px solid" borderColor="rytuRed.50" borderRadius="500px">
+                {/* <ActivityMenu account={account.address} /> */}
+                <Link href="/chat">
+                  <IconButton
+                    aria-label="Notifications"
+                    variant="ghost"
+                    colorScheme="gray"
+                    rounded="full"
+                    icon={
+                      <Icon as={FaEnvelope} color="brand.black" h={4} w={4} />
+                    }
+                  />
+                </Link>
+                <Link href="/notification">
+                  <IconButton
+                    aria-label="Notifications"
+                    variant="ghost"
+                    colorScheme="gray"
+                    rounded="full"
+                    position="relative"
+                  >
+                    <Flex>
+                      <Icon as={FaBell} color="brand.black" h={4} w={4} />
+                      {account.notifications.totalCount > 0 && (
+                        <Flex
+                          position="absolute"
+                          top={2}
+                          right={2}
+                          h={2.5}
+                          w={2.5}
+                          align="center"
+                          justify="center"
+                          rounded="full"
+                          bgColor="red.500"
+                        />
+                      )}
+                    </Flex>
+                  </IconButton>
+                </Link>
+                {cartButton}
+              </Box>
               <UserMenu
                 user={account}
                 signOutFn={() => logout().then(disconnect)}

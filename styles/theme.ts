@@ -1,6 +1,10 @@
 import { extendTheme } from '@chakra-ui/react'
 import { generatePalette } from '../colors'
 
+// import helsinkiFontRegular from '/public/fonts/helsinki.ttf';
+// import helsinkiFontThin from '/public/fonts/helsinkixxl-thin.otf';
+// import helsinkiFontBold from '/public/fonts/helsinkixxl-black.otf';
+
 export const baseTheme = extendTheme({
   styles: {
     global: {
@@ -245,6 +249,7 @@ export const baseTheme = extendTheme({
   },
   fonts: {
     banner: 'Poppins',
+    helsinki: 'Helsinki, sans-serif'
   },
   colors: {
     white: '#FFFFFF',
@@ -289,6 +294,15 @@ export const baseTheme = extendTheme({
       500: '#EF4444',
       900: '#7F1D1D',
     },
+    rytuGreen: {
+      50: '#7be8ee',
+      100: '#43ab9d',
+      300: '#065578',
+      500: '#09141b',
+    },
+    rytuRed: {
+      50: "#e33047"
+    }
   },
   radii: {
     none: '0',

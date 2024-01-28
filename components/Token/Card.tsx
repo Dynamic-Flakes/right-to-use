@@ -2,6 +2,7 @@ import {
   AspectRatio,
   Badge,
   Box,
+  Divider,
   Flex,
   Heading,
   Icon,
@@ -137,7 +138,7 @@ const TokenCard: FC<Props> = ({ asset }) => {
       overflow="hidden"
       borderRadius="2xl"
       border="1px solid"
-      borderColor="gray.200"
+      borderColor="rytuGreen.100"
       shadow="sm"
       bgColor="white"
       position="relative"
@@ -169,6 +170,7 @@ const TokenCard: FC<Props> = ({ asset }) => {
           )}
         </AspectRatio>
       </Flex>
+
       {isHovered && (
         <>
           <Flex
@@ -213,14 +215,44 @@ const TokenCard: FC<Props> = ({ asset }) => {
               })}
             </Badge>
           )}
+
+        <Flex 
+            position="absolute"
+            backgroundColor="#003f42d9"
+            maxWidth="200px"
+            alignSelf="center"
+            bottom="85px"
+            padding="10px 15px"
+            fontSize="12px"
+            columnGap="10px"
+            fontWeight="600"
+            borderRadius="10px"
+            color="white"
+          >
+                <Flex direction="column" justifyContent="center">
+                  <Text>Sale ends in</Text>
+                  <Text textAlign="center" fontSize="18px">2 days</Text>
+                </Flex>
+
+                <Divider
+                  orientation="vertical"
+                  borderColor="white"
+                  height="40px" 
+                />
+                <Flex direction="column" justifyContent="center">
+                  <Text>Highest Bid</Text>
+                  <Text textAlign="center" fontSize="18px">4.2 ETH</Text>
+                </Flex>
+          </Flex>
+
         </>
       )}
-      <Flex justify="space-between" px={4} pt={4} pb={3} gap={2} align="start">
+      <Flex justify="space-between" px={4} pt={2} pb={1} gap={2} align="start" backgroundColor="rytuGreen.50">
         <Stack spacing={0} w="full" overflow="hidden">
           <Link
             href={`/collection/${asset.collection.chainId}/${asset.collection.address}`}
           >
-            <Text variant="subtitle2" color="gray.500" isTruncated>
+            <Text variant="subtitle2" color="gray.500" isTruncated textAlign="center">
               {asset.collection.name}
             </Text>
           </Link>
@@ -231,6 +263,7 @@ const TokenCard: FC<Props> = ({ asset }) => {
               color="brand.black"
               title={asset.name}
               isTruncated
+              textAlign="center"
             >
               {asset.name}
             </Heading>

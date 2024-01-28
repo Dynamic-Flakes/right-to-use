@@ -60,7 +60,7 @@ const ChatPage: NextPage = () => {
         borderBlock="1px"
         borderInline={{ base: 'none', lg: '1px' }}
         // Need color definition for both breakpoints for some reason.
-        // borderColor="gray.200" doesn't apply for both.
+        // borderColor="rytuGreen.100" doesn't apply for both.
         borderColor={{ base: 'gray.200', lg: 'gray.200' }}
         rounded={{ base: 'none', lg: 'xl' }}
         height="50vh"

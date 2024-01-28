@@ -47,7 +47,7 @@ const TraitList: FC<TraitListProps> = ({
           flexDirection="column"
           rounded="xl"
           border="1px"
-          borderColor="gray.200"
+          borderColor="rytuGreen.100"
           p={3}
         >
           <Text

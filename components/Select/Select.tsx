@@ -132,7 +132,7 @@ const Select = <T,>({
                         overflow="hidden"
                         rounded="full"
                         borderWidth="1px"
-                        borderColor="gray.200"
+                        borderColor="rytuGreen.100"
                       >
                         <Image
                           src={selectedChoice.image}
@@ -197,7 +197,7 @@ const Select = <T,>({
                           overflow="hidden"
                           rounded="full"
                           borderWidth="1px"
-                          borderColor="gray.200"
+                          borderColor="rytuGreen.100"
                         >
                           <Image
                             src={choice.image}

@@ -1,4 +1,4 @@
-import { Stack } from '@chakra-ui/react'
+import { Flex, Stack } from '@chakra-ui/react'
 import AssetsHomeSection from 'components/HomeSection/Assets'
 import CollectionsHomeSection from 'components/HomeSection/Collections'
 import FeaturedHomeSection from 'components/HomeSection/Featured'
@@ -9,6 +9,7 @@ import { useCallback, useState } from 'react'
 import Head from '../components/Head'
 import useCart from '../hooks/useCart'
 import LargeLayout from '../layouts/large'
+import { RectangularBanner, SquareBanner } from 'components/Banner'
 
 type Props = {
   now: number
@@ -21,6 +22,10 @@ const HomePage: NextPage<Props> = ({ now }) => {
     <LargeLayout>
       <Head />
       <Stack spacing={12}>
+        <Flex direction={['column', 'row']} maxW="100%" justifyContent="space-between" gap="20px">
+          <RectangularBanner />
+          <SquareBanner />
+        </Flex>
         <FeaturedHomeSection date={date} />
         <CollectionsHomeSection />
         <UsersHomeSection />

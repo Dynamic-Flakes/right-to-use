@@ -79,7 +79,7 @@ const CreatePage: NextPage = () => {
                   spacing={8}
                   rounded="xl"
                   border="1px"
-                  borderColor="gray.200"
+                  borderColor="rytuGreen.100"
                   borderStyle="solid"
                   bg="white"
                   p={12}

@@ -51,6 +51,17 @@ const SearchInput: FC<IProps> = ({
         isTruncated
         minWidth={28}
         {...props}
+        css={{
+          '&:focus': {
+            borderColor: '#e33047',
+            outline: 'none',
+          },
+          '&:focus-visible': {
+            borderColor: '#e33047',
+            outline: 'none',
+            boxShadow: 'none',
+          },
+        }}
       />
       <InputRightElement w={12} mr={2} pl={0} justifyContent="flex-end" gap={1}>
         {deleteButtonActive && (
@@ -67,7 +78,7 @@ const SearchInput: FC<IProps> = ({
           as={HiOutlineSearch}
           w={6}
           h={6}
-          color="black"
+          color="rytuRed.50"
           cursor="pointer"
           onClick={onSubmit ?? undefined}
         />

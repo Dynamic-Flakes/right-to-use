@@ -133,7 +133,7 @@ const CheckoutPage: NextPage<Props> = ({ now }) => {
                       position="relative"
                       as="span"
                       border="1px"
-                      borderColor="gray.200"
+                      borderColor="rytuGreen.100"
                       h={8}
                       w={8}
                       align="center"

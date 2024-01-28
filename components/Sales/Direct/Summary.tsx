@@ -46,7 +46,7 @@ const SaleDirectSummary: FC<Props> = ({ sales, isSingle }) => {
             overflow="hidden"
             rounded="full"
             border="1px"
-            borderColor="gray.200"
+            borderColor="rytuGreen.100"
           >
             <Image
               src={sales[0].currency.image}
@@ -69,7 +69,7 @@ const SaleDirectSummary: FC<Props> = ({ sales, isSingle }) => {
                 overflow="hidden"
                 rounded="full"
                 border="1px"
-                borderColor="gray.200"
+                borderColor="rytuGreen.100"
                 ml={i > 0 ? -2 : undefined}
                 key={i}
               >

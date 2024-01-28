@@ -33,14 +33,15 @@ const SaleOpenCardFooter: FC<HTMLAttributes<any> & Props> = ({
       href={`/tokens/${assetId}${!isOwner ? '/bid' : ''}`}
       py={2}
       px={4}
-      bgColor={showButton ? 'brand.500' : 'gray.100'}
+      bgColor={showButton ? 'brand.500' : 'rytuGreen.50'}
       {...props}
     >
       <Text
         variant="subtitle2"
-        color={showButton ? 'white' : 'gray.500'}
+        color={showButton ? 'white' : 'brand.black'}
         noOfLines={1}
         wordBreak="break-all"
+        textAlign="center"
       >
         {showButton ? (
           isOwner ? (
