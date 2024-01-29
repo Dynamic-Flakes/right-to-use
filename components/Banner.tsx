@@ -46,11 +46,12 @@ const RectangularBanner = () => {
                 transform="rotate(15deg)"
                 opacity=".95" 
                 right="10"
+                border=".5px solid #fff"
                 animation={`${bounceKeyframes} 4s infinite`}
             />
             
             <Image 
-                src="/images/banner-nft-photo.png" 
+                src="/images/banner-nft-music.png" 
                 alt="Image 1"  
                 w="30%"
                 position="absolute"
@@ -60,11 +61,12 @@ const RectangularBanner = () => {
                 transform="rotate(15deg)"
                 opacity=".95" 
                 right="20"
+                border=".5px solid #fff"
                 animation={`${bounceKeyframes} 5s infinite`}
             />
 
             <Image 
-                src="/images/banner-nft-music.png" 
+                src="/images/banner-nft-photo.png" 
                 alt="Image 1"  
                 w="30%"
                 position="absolute"
@@ -92,7 +94,7 @@ const SquareBanner = () => {
         bgRepeat="no-repeat"
         color="white"
         p={4}
-        align="center"
+        textAlign="center"
         borderRadius="15px"
         display="flex"
         justifyContent="center"
