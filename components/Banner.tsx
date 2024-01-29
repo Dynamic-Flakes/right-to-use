@@ -28,8 +28,8 @@ const RectangularBanner = () => {
       <Box flex="1" paddingLeft="20px">
         <Text fontSize="30px" fontWeight="900" lineHeight="40px">Get or Give the Right to Use a Copywrited <br/>Work</Text>
         <Box display="flex" gap="10px" mt="15px">
-            <Button variant="outline" colorScheme="white">Give RYTU</Button>
-            <Button variant="outline" colorScheme="white">Get RYTU</Button>
+            <Button variant="outline" colorScheme="white">Give the RYTU</Button>
+            <Button variant="outline" colorScheme="white">Get the RYTU</Button>
         </Box>
       </Box>
       
