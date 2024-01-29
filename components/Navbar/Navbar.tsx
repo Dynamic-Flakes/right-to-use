@@ -28,7 +28,7 @@ import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { FaBell } from '@react-icons/all-files/fa/FaBell'
 import { FaEnvelope } from '@react-icons/all-files/fa/FaEnvelope'
 import { FaShoppingCart } from '@react-icons/all-files/fa/FaShoppingCart'
-import { HiChevronDown } from '@react-icons/all-files/hi/HiChevronDown'
+// import { HiChevronDown } from '@react-icons/all-files/hi/HiChevronDown'
 import { HiOutlineMenu } from '@react-icons/all-files/hi/HiOutlineMenu'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
@@ -257,32 +257,32 @@ const DrawerMenu: FC<{
 }
 
 // Activity menu for desktop. Only visible when signed in
-const ActivityMenu: FC<{ account: string }> = ({ account }) => {
-  const { t } = useTranslation('components')
-  return (
-    <Menu>
-      <MenuButton color="brand.black" _hover={{ color: 'gray.500' }}>
-        <HStack spacing={2}>
-          <Text as="span" variant="button2">
-            {t('navbar.activity.title')}
-          </Text>
-          <HiChevronDown />
-        </HStack>
-      </MenuButton>
-      <MenuList>
-        <Link href={`/users/${account}/bids`} w="full">
-          <MenuItem>{t('navbar.activity.bids')}</MenuItem>
-        </Link>
-        <Link href={`/users/${account}/trades`} w="full">
-          <MenuItem>{t('navbar.activity.trades')}</MenuItem>
-        </Link>
-        <Link href={`/users/${account}/offers`} w="full">
-          <MenuItem>{t('navbar.activity.offers')}</MenuItem>
-        </Link>
-      </MenuList>
-    </Menu>
-  )
-}
+// const ActivityMenu: FC<{ account: string }> = ({ account }) => {
+//   const { t } = useTranslation('components')
+//   return (
+//     <Menu>
+//       <MenuButton color="brand.black" _hover={{ color: 'gray.500' }}>
+//         <HStack spacing={2}>
+//           <Text as="span" variant="button2">
+//             {t('navbar.activity.title')}
+//           </Text>
+//           <HiChevronDown />
+//         </HStack>
+//       </MenuButton>
+//       <MenuList>
+//         <Link href={`/users/${account}/bids`} w="full">
+//           <MenuItem>{t('navbar.activity.bids')}</MenuItem>
+//         </Link>
+//         <Link href={`/users/${account}/trades`} w="full">
+//           <MenuItem>{t('navbar.activity.trades')}</MenuItem>
+//         </Link>
+//         <Link href={`/users/${account}/offers`} w="full">
+//           <MenuItem>{t('navbar.activity.offers')}</MenuItem>
+//         </Link>
+//       </MenuList>
+//     </Menu>
+//   )
+// }
 
 // Account menu for desktop. Only visible when signed in
 const UserMenu: FC<{
