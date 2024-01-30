@@ -28,12 +28,23 @@ const ExploreTemplate: FC<{
         pb={{ base: 2.5, md: 0 }}
         overflowX="auto"
       >
-        <TabList gap={4}>
+        <TabList gap={4}  backgroundColor="rytuGreen.50"
+        borderColor="rytuGreen.50"
+        borderRadius="50px">
           <Tab
             as={Link}
             href={`/explore${searchParam}`}
-            pb={4}
+            pb={3}
+            pt={3}
+            pl="25px"
             whiteSpace="nowrap"
+            _selected={{
+              backgroundColor: 'rytuRed.50', 
+              color: 'white', 
+              borderColor: 'rytuRed.50', 
+              borderRadius: '50px', 
+              padding: '0 25px'
+            }}
           >
             <Text as="span" variant="subtitle1">
               {t('explore.tabs.nfts')}
@@ -42,8 +53,16 @@ const ExploreTemplate: FC<{
           <Tab
             as={Link}
             href={`/explore/collections${searchParam}`}
-            pb={4}
+            pb={3}
+            pt={3}
             whiteSpace="nowrap"
+            _selected={{
+              backgroundColor: 'rytuRed.50', 
+              color: 'white', 
+              borderColor: 'rytuRed.50', 
+              borderRadius: '50px', 
+              padding: '0 25px'
+            }}
           >
             <Text as="span" variant="subtitle1">
               {t('explore.tabs.collections')}
@@ -52,8 +71,16 @@ const ExploreTemplate: FC<{
           <Tab
             as={Link}
             href={`/explore/users${searchParam}`}
-            pb={4}
+            pb={3}
+            pt={3}
             whiteSpace="nowrap"
+            _selected={{
+              backgroundColor: 'rytuRed.50', 
+              color: 'white', 
+              borderColor: 'rytuRed.50', 
+              borderRadius: '50px', 
+              padding: '0 25px'
+            }}
           >
             <Text as="span" variant="subtitle1">
               {t('explore.tabs.users')}

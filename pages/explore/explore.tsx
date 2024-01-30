@@ -177,7 +177,13 @@ const ExplorePage: NextPage<Props> = ({ now }) => {
           )}
           <Grid gap="4" templateColumns={{ base: '1fr', md: '1fr 3fr' }}>
             {showFilters && !isSmall && (
-              <GridItem as="aside" overflow="hidden">
+              <GridItem as="aside" overflow="hidden" 
+                boxShadow="0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)"
+                padding="15px"
+                borderRadius="15px"
+                border="1px solid"
+                borderColor="rytuGreen.100"
+              >
                 <FilterAsset onFilterChange={updateFilter} filter={filter} />
               </GridItem>
             )}
