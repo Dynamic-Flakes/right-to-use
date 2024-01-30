@@ -50,13 +50,18 @@ const SearchInput: FC<IProps> = ({
         pr={deleteButtonActive ? 14 : 9}
         isTruncated
         minWidth={28}
+        backgroundColor="#ffffff4d"
+        boxShadow="0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)"
+        // border="none"
         {...props}
         css={{
           '&:focus': {
+            border: '1px solid',
             borderColor: '#e33047',
             outline: 'none',
           },
           '&:focus-visible': {
+            border: '1px solid',
             borderColor: '#e33047',
             outline: 'none',
             boxShadow: 'none',

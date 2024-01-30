@@ -32,7 +32,7 @@ const Avatar: FC<Props> = ({
           size={size * 4}
           rounded="full"
         />
-        <Text as="span" variant="subtitle2" color="gray.500">
+        <Text as="span" variant="subtitle2" color="rytuGreen.200">
           {name || <WalletAddress address={address} isShort />}
         </Text>
         {verification?.status === 'VALIDATED' && (

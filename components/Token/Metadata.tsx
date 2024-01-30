@@ -1,4 +1,4 @@
-import { Flex, Heading, Icon, Stack, Text } from '@chakra-ui/react'
+import { Divider, Flex, Heading, Icon, ResponsiveValue, Stack, Text, useBreakpointValue } from '@chakra-ui/react'
 import { BigNumber } from '@ethersproject/bignumber'
 import { IoImageOutline } from '@react-icons/all-files/io5/IoImageOutline'
 import useTranslation from 'next-translate/useTranslation'
@@ -47,8 +47,11 @@ export type Props = {
   }
 }
 
+type FlexDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+
 const TokenMetadata: FC<Props> = ({ asset }) => {
   const { t } = useTranslation('components')
+  const stackDirection = useBreakpointValue({ base: 'column', md: 'row' }) as ResponsiveValue<FlexDirection>
 
   const isOpenCollection = asset.collection.mintType === 'PUBLIC'
   const numberOfOwners = asset.ownerships.totalCount
@@ -57,10 +60,19 @@ const TokenMetadata: FC<Props> = ({ asset }) => {
   const owners = asset.ownerships.nodes
 
   return (
-    <Flex wrap="wrap" rowGap={6} columnGap={8}>
+    <Flex 
+      direction={stackDirection}
+      wrap="wrap" 
+      rowGap={6} 
+      columnGap={8} 
+      boxShadow="0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)"
+      borderRadius="15px"
+      border="1px solid"
+      padding="10px"
+      >
       {asset.creator && (
         <Stack spacing={3}>
-          <Heading as="h5" variant="heading3" color="gray.500">
+          <Heading as="h5" variant="heading3" color="rytuGreen.200">
             {isOpenCollection
               ? t('token.metadata.creator')
               : t('token.metadata.minted_by')}
@@ -69,44 +81,72 @@ const TokenMetadata: FC<Props> = ({ asset }) => {
         </Stack>
       )}
       {numberOfOwners === 1 && owners[0] && (
-        <Stack spacing={3}>
-          <Heading as="h5" variant="heading3" color="gray.500">
-            {t('token.metadata.owner')}
-          </Heading>
-          <Avatar user={owners[0].owner} />
-        </Stack>
+        <>
+          <Divider
+            orientation={stackDirection === 'row' ? 'vertical' : 'horizontal'}
+            borderColor="rytuGreen.200"
+            height={stackDirection === 'row' ? '60px' : '0px'} 
+          />
+          <Stack spacing={3}>
+            <Heading as="h5" variant="heading3" color="rytuGreen.200">
+              {t('token.metadata.owner')}
+            </Heading>
+            <Avatar user={owners[0].owner} />
+          </Stack>
+        </>
       )}
       {numberOfOwners > 1 && (
-        <Stack spacing={3}>
-          <Heading as="h5" variant="heading3" color="gray.500">
-            {t('token.metadata.owners')}
-          </Heading>
-          <OwnersModal asset={asset} />
-        </Stack>
+        <>
+          <Divider
+            orientation={stackDirection === 'row' ? 'vertical' : 'horizontal'}
+            borderColor="rytuGreen.200"
+            height={stackDirection === 'row' ? '60px' : '0px'} 
+          />
+          <Stack spacing={3}>
+            <Heading as="h5" variant="heading3" color="rytuGreen.200">
+              {t('token.metadata.owners')}
+            </Heading>
+            <OwnersModal asset={asset} />
+          </Stack>
+        </>
       )}
       {asset.collection.standard === 'ERC721' && (
-        <Stack spacing={3}>
-          <Heading as="h5" variant="heading3" color="gray.500">
-            {t('token.metadata.edition')}
-          </Heading>
-          <Flex align="center" display="inline-flex" h="full">
-            <Icon as={IoImageOutline} mr={2} h={4} w={4} color="gray.500" />
-            <Text as="span" variant="subtitle2" color="gray.500">
-              {t('token.metadata.single')}
-            </Text>
-          </Flex>
-        </Stack>
+        <>
+          <Divider
+            orientation={stackDirection === 'row' ? 'vertical' : 'horizontal'}
+            borderColor="rytuGreen.200"
+            height={stackDirection === 'row' ? '60px' : '0px'} 
+          />
+          <Stack spacing={3}>
+            <Heading as="h5" variant="heading3" color="rytuGreen.200">
+              {t('token.metadata.edition')}
+            </Heading>
+            <Flex align="center" display="inline-flex" h="full">
+              <Icon as={IoImageOutline} mr={2} h={4} w={4} color="rytuGreen.200" />
+              <Text as="span" variant="subtitle2" color="rytuGreen.200">
+                {t('token.metadata.single')}
+              </Text>
+            </Flex>
+          </Stack>
+        </>
       )}
       {asset.collection.standard === 'ERC1155' && (
-        <Stack spacing={3}>
-          <Heading as="h5" variant="heading3" color="gray.500">
-            {t('token.metadata.edition')}
-          </Heading>
-          <Supply
-            current={saleSupply}
-            total={totalSupply || BigNumber.from('0')}
+        <>
+          <Divider
+            orientation={stackDirection === 'row' ? 'vertical' : 'horizontal'}
+            borderColor="rytuGreen.200"
+            height={stackDirection === 'row' ? '60px' : '0px'} 
           />
-        </Stack>
+          <Stack spacing={3}>
+            <Heading as="h5" variant="heading3" color="rytuGreen.200">
+              {t('token.metadata.edition')}
+            </Heading>
+            <Supply
+              current={saleSupply}
+              total={totalSupply || BigNumber.from('0')}
+            />
+          </Stack>
+        </>
       )}
     </Flex>
   )

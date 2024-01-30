@@ -143,264 +143,296 @@ const DetailPage: NextPage<Props> = ({ now: nowProp }) => {
   if (asset === null) return <Error statusCode={404} />
   return (
     <LargeLayout>
+      <Flex backgroundColor="rytuGreen.50" position="absolute" top="0" w="100vw" minH="74vh"
+        left="0" zIndex="-2"></Flex>
       <Head
         title={asset ? `${asset.name} - ${asset.collection.name}` : undefined}
         description={asset?.description}
         image={asset?.image}
       />
-      <SimpleGrid spacing={6} columns={{ md: 2 }}>
-        <AspectRatio ratio={1}>
-          <Center
-            flexDirection="column"
-            rounded={{ md: 'xl' }}
-            p={12}
-            bg="brand.50"
-          >
+      <Box>
+        <SimpleGrid 
+          // spacing={6} 
+          columnGap={6}
+          columns={{ md: 2 }}
+          // backgroundColor="rytuGreen.50"
+          margin="-40px 0px 20px"
+          // padding="10px 30px"
+        >
+          <AspectRatio ratio={1}>
+            <Center
+              flexDirection="column"
+              rounded={{ md: 'xl' }}
+              p={12}
+              borderRadius="50px"
+              overflow="hidden"
+            >
+              {!asset ? (
+                <Skeleton width="100%" height="100%" />
+              ) : (
+                <TokenMedia
+                  {...media}
+                  defaultText={asset.name}
+                  controls
+                  sizes="
+                (min-width: 80em) 500px,
+                (min-width: 48em) 50vw,
+                100vw"
+                />
+              )}
+            </Center>
+          </AspectRatio>
+          <Flex direction="column" my="auto" gap={8} p={{ base: 6, md: 0 }}>
+            <Flex justify="space-between">
+              <Stack spacing={1}>
+                <Heading
+                  as="h1"
+                  variant="title"
+                  color="brand.black"
+                  wordBreak="break-word"
+                >
+                  {!asset ? <Skeleton height="1em" width="300px" /> : asset.name}
+                </Heading>
+                <Heading 
+                  variant="heading1" 
+                  backgroundColor="rytuRed.50" 
+                  color="white" 
+                  borderRadius="100px"
+                  transform="rotate(-5deg)" 
+                  textAlign="center"
+                  padding="5px 10px">
+                  {!asset ? (
+                    <Skeleton height="1em" width="200px" />
+                  ) : (
+                    <Link
+                      href={`/collection/${asset.collection.chainId}/${asset.collection.address}`}
+                    >
+                      {asset.collection.name}
+                    </Link>
+                  )}
+                </Heading>
+              </Stack>
+              {asset && (
+                <Flex direction="row" align="flex-start" gap={3}>
+                  <Menu>
+                    <MenuButton
+                      as={IconButton}
+                      variant="outline"
+                      colorScheme="gray"
+                      borderColor="rytuGreen.200"
+                      rounded="full"
+                      aria-label="activator"
+                      icon={<Icon as={HiOutlineDotsHorizontal} w={5} h={5} />}
+                    />
+                    <MenuList>
+                      <MenuItem onClick={() => refreshMetadata(asset.id)}>
+                        {t('asset.detail.menu.refresh-metadata')}
+                      </MenuItem>
+                      <Link
+                        href={`mailto:${REPORT_EMAIL}?subject=${encodeURI(
+                          t('asset.detail.menu.report.subject'),
+                        )}&body=${encodeURI(
+                          t('asset.detail.menu.report.body', asset),
+                        )}`}
+                        isExternal
+                      >
+                        <MenuItem>{t('asset.detail.menu.report.label')}</MenuItem>
+                      </Link>
+                    </MenuList>
+                  </Menu>
+                </Flex>
+              )}
+            </Flex>
+
             {!asset ? (
-              <Skeleton width="100%" height="100%" />
+              <SkeletonProperty items={3} />
             ) : (
-              <TokenMedia
-                {...media}
-                defaultText={asset.name}
-                controls
-                sizes="
-              (min-width: 80em) 500px,
-              (min-width: 48em) 50vw,
-              100vw"
+              <TokenMetadata asset={asset} />
+            )}
+            {!asset || !data?.currencies?.nodes ? (
+              <>
+                <SkeletonProperty items={1} />
+                <Skeleton height="40px" width="100%" />
+              </>
+            ) : (
+              <SaleDetail
+                asset={asset}
+                currencies={data.currencies?.nodes}
+                isHomepage={false}
+                onOfferCanceled={refresh}
               />
             )}
-          </Center>
-        </AspectRatio>
-        <Flex direction="column" my="auto" gap={8} p={{ base: 6, md: 0 }}>
-          <Flex justify="space-between">
-            <Stack spacing={1}>
-              <Heading variant="heading1" color="gray.500">
-                {!asset ? (
-                  <Skeleton height="1em" width="200px" />
-                ) : (
-                  <Link
-                    href={`/collection/${asset.collection.chainId}/${asset.collection.address}`}
-                  >
-                    {asset.collection.name}
-                  </Link>
-                )}
-              </Heading>
-              <Heading
-                as="h1"
-                variant="title"
-                color="brand.black"
-                wordBreak="break-word"
-              >
-                {!asset ? <Skeleton height="1em" width="300px" /> : asset.name}
-              </Heading>
-            </Stack>
-            {asset && (
-              <Flex direction="row" align="flex-start" gap={3}>
-                <Menu>
-                  <MenuButton
-                    as={IconButton}
-                    variant="outline"
-                    colorScheme="gray"
-                    rounded="full"
-                    aria-label="activator"
-                    icon={<Icon as={HiOutlineDotsHorizontal} w={5} h={5} />}
-                  />
-                  <MenuList>
-                    <MenuItem onClick={() => refreshMetadata(asset.id)}>
-                      {t('asset.detail.menu.refresh-metadata')}
-                    </MenuItem>
-                    <Link
-                      href={`mailto:${REPORT_EMAIL}?subject=${encodeURI(
-                        t('asset.detail.menu.report.subject'),
-                      )}&body=${encodeURI(
-                        t('asset.detail.menu.report.body', asset),
-                      )}`}
-                      isExternal
-                    >
-                      <MenuItem>{t('asset.detail.menu.report.label')}</MenuItem>
-                    </Link>
-                  </MenuList>
-                </Menu>
-              </Flex>
-            )}
           </Flex>
+        </SimpleGrid>
 
-          {!asset ? (
-            <SkeletonProperty items={3} />
-          ) : (
-            <TokenMetadata asset={asset} />
-          )}
-          {!asset || !data?.currencies?.nodes ? (
+        <SimpleGrid spacing={6} columns={{ md: 2 }}>
+          {asset && (
             <>
-              <SkeletonProperty items={1} />
-              <Skeleton height="40px" width="100%" />
-            </>
-          ) : (
-            <SaleDetail
-              asset={asset}
-              currencies={data.currencies?.nodes}
-              isHomepage={false}
-              onOfferCanceled={refresh}
-            />
-          )}
-        </Flex>
+              <Stack p={6} spacing={6}>
+                {asset.description && (
+                  <Stack spacing={3}>
+                    <Heading as="h4" variant="heading2" color="brand.black">
+                      {t('asset.detail.description')}
+                    </Heading>
+                    <Stack borderRadius="2xl" p={3} borderWidth="1px">
+                      <Text
+                        as="div"
+                        variant="text-sm"
+                        color="gray.500"
+                        whiteSpace="pre-wrap"
+                      >
+                        <MarkdownViewer source={asset.description} />
+                      </Text>
+                    </Stack>
+                  </Stack>
+                )}
 
-        {asset && (
-          <>
-            <Stack p={6} spacing={6}>
-              {asset.description && (
                 <Stack spacing={3}>
                   <Heading as="h4" variant="heading2" color="brand.black">
-                    {t('asset.detail.description')}
+                    {t('asset.detail.details.title')}
                   </Heading>
-                  <Stack borderRadius="2xl" p={3} borderWidth="1px">
-                    <Text
-                      as="div"
-                      variant="text-sm"
-                      color="gray.500"
-                      whiteSpace="pre-wrap"
-                    >
-                      <MarkdownViewer source={asset.description} />
-                    </Text>
-                  </Stack>
-                </Stack>
-              )}
-
-              <Stack spacing={3}>
-                <Heading as="h4" variant="heading2" color="brand.black">
-                  {t('asset.detail.details.title')}
-                </Heading>
-                <Stack
-                  as="nav"
-                  borderRadius="2xl"
-                  p={3}
-                  borderWidth="1px"
-                  align="flex-start"
-                  spacing={3}
-                >
-                  <Flex alignItems="center">
-                    <Text variant="text-sm" color="gray.500" mr={2}>
-                      {t('asset.detail.details.chain')}
-                    </Text>
-                    <Image
-                      src={`/chains/${chainId}.svg`}
-                      alt={chainId.toString()}
-                      width={20}
-                      height={20}
-                      w={5}
-                      h={5}
-                    />
-                    <Text variant="subtitle2" ml={1}>
-                      {chain?.name}
-                    </Text>
-                  </Flex>
-
-                  <Flex alignItems="center">
-                    <Text variant="text-sm" color="gray.500" mr={2}>
-                      {t('asset.detail.details.explorer')}
-                    </Text>
-                    <Link href={assetExternalURL} isExternal externalIcon>
-                      <Text variant="subtitle2">{blockExplorer.name}</Text>
-                    </Link>
-                  </Flex>
-
-                  <Flex alignItems="center">
-                    <Text variant="text-sm" color="gray.500" mr={2}>
-                      {t('asset.detail.details.media')}
-                    </Text>
-                    <Link
-                      href={asset.animationUrl || asset.image}
-                      isExternal
-                      externalIcon
-                    >
-                      <Text variant="subtitle2">IPFS</Text>
-                    </Link>
-                  </Flex>
-
-                  {asset.tokenUri && (
+                  <Stack
+                    as="nav"
+                    borderRadius="2xl"
+                    p={3}
+                    borderWidth="1px"
+                    align="flex-start"
+                    spacing={3}
+                  >
                     <Flex alignItems="center">
                       <Text variant="text-sm" color="gray.500" mr={2}>
-                        {t('asset.detail.details.metadata')}
+                        {t('asset.detail.details.chain')}
                       </Text>
-                      <Link href={asset.tokenUri} isExternal externalIcon>
+                      <Image
+                        src={`/chains/${chainId}.svg`}
+                        alt={chainId.toString()}
+                        width={20}
+                        height={20}
+                        w={5}
+                        h={5}
+                      />
+                      <Text variant="subtitle2" ml={1}>
+                        {chain?.name}
+                      </Text>
+                    </Flex>
+
+                    <Flex alignItems="center">
+                      <Text variant="text-sm" color="gray.500" mr={2}>
+                        {t('asset.detail.details.explorer')}
+                      </Text>
+                      <Link href={assetExternalURL} isExternal externalIcon>
+                        <Text variant="subtitle2">{blockExplorer.name}</Text>
+                      </Link>
+                    </Flex>
+
+                    <Flex alignItems="center">
+                      <Text variant="text-sm" color="gray.500" mr={2}>
+                        {t('asset.detail.details.media')}
+                      </Text>
+                      <Link
+                        href={asset.animationUrl || asset.image}
+                        isExternal
+                        externalIcon
+                      >
                         <Text variant="subtitle2">IPFS</Text>
                       </Link>
                     </Flex>
-                  )}
+
+                    {asset.tokenUri && (
+                      <Flex alignItems="center">
+                        <Text variant="text-sm" color="gray.500" mr={2}>
+                          {t('asset.detail.details.metadata')}
+                        </Text>
+                        <Link href={asset.tokenUri} isExternal externalIcon>
+                          <Text variant="subtitle2">IPFS</Text>
+                        </Link>
+                      </Flex>
+                    )}
+                  </Stack>
                 </Stack>
+
+                {traits && (
+                  <Stack spacing={3}>
+                    <Heading
+                      as="h4"
+                      variant="heading2"
+                      color="brand.black"
+                      pb={3}
+                    >
+                      {t('asset.detail.traits')}
+                    </Heading>
+                    <Box borderRadius="2xl" p={3} borderWidth="1px">
+                      <TraitList asset={asset} traits={traits} />
+                    </Box>
+                  </Stack>
+                )}
               </Stack>
 
-              {traits && (
-                <Stack spacing={3}>
-                  <Heading
-                    as="h4"
-                    variant="heading2"
-                    color="brand.black"
-                    pb={3}
-                  >
-                    {t('asset.detail.traits')}
-                  </Heading>
-                  <Box borderRadius="2xl" p={3} borderWidth="1px">
-                    <TraitList asset={asset} traits={traits} />
-                  </Box>
-                </Stack>
-              )}
-            </Stack>
-
-            <Box overflow="hidden">
-              <Tabs
-                isManual
-                index={tabIndex}
-                colorScheme="brand"
-                overflowX="auto"
-              >
-                <TabList gap={4}>
-                  {tabs.map((tab) => (
-                    <Tab
-                      key={tab}
-                      as={Link}
-                      href={`/tokens/${assetId}?filter=${tab}`}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        void replace(
-                          `/tokens/${assetId}?filter=${tab}`,
-                          undefined,
-                          {
-                            shallow: true,
-                          },
-                        )
-                      }}
-                      whiteSpace="nowrap"
-                    >
-                      <Text as="span" variant="subtitle1">
-                        {t(`asset.detail.tabs.${tab}`)}
-                      </Text>
-                    </Tab>
-                  ))}
-                </TabList>
-              </Tabs>
-              <VStack alignItems="flex-start" spacing={3} py={6} w="full">
-                {(!query.filter || query.filter === AssetTabs.bids) && (
-                  <BidList
-                    asset={asset}
-                    bids={asset.bids.nodes}
-                    preventAcceptation={!isOwner}
-                    onAccepted={refresh}
-                    onCanceled={refresh}
-                  />
-                )}
-                {query.filter === AssetTabs.history && (
-                  <HistoryList
-                    chainId={chainId}
-                    collectionAddress={collectionAddress}
-                    tokenId={tokenId}
-                  />
-                )}
-              </VStack>
-            </Box>
-          </>
-        )}
-      </SimpleGrid>
+              <Box overflow="hidden">
+                <Tabs
+                  isManual
+                  index={tabIndex}
+                  colorScheme="brand"
+                  overflowX="auto"
+                  backgroundColor="rytuGreen.50"
+                  borderColor="rytuGreen.50"
+                  borderRadius="50px"
+                >
+                  <TabList gap={4}>
+                    {tabs.map((tab) => (
+                      <Tab
+                        key={tab}
+                        as={Link}
+                        href={`/tokens/${assetId}?filter=${tab}`}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          void replace(
+                            `/tokens/${assetId}?filter=${tab}`,
+                            undefined,
+                            {
+                              shallow: true,
+                            },
+                          )
+                        }}
+                        whiteSpace="nowrap"
+                        _selected={{
+                          backgroundColor: 'rytuRed.50', 
+                          color: 'white', 
+                          borderColor: 'rytuRed.50', 
+                          borderRadius: '50px', 
+                          padding: '0 25px'
+                        }}
+                      >
+                        <Text as="span" variant="subtitle1">
+                          {t(`asset.detail.tabs.${tab}`)}
+                        </Text>
+                      </Tab>
+                    ))}
+                  </TabList>
+                </Tabs>
+                <VStack alignItems="flex-start" spacing={3} py={6} w="full">
+                  {(!query.filter || query.filter === AssetTabs.bids) && (
+                    <BidList
+                      asset={asset}
+                      bids={asset.bids.nodes}
+                      preventAcceptation={!isOwner}
+                      onAccepted={refresh}
+                      onCanceled={refresh}
+                    />
+                  )}
+                  {query.filter === AssetTabs.history && (
+                    <HistoryList
+                      chainId={chainId}
+                      collectionAddress={collectionAddress}
+                      tokenId={tokenId}
+                    />
+                  )}
+                </VStack>
+              </Box>
+            </>
+          )}
+        </SimpleGrid>
+      </Box>
     </LargeLayout>
   )
 }
