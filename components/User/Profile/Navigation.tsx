@@ -74,6 +74,9 @@ const UserProfileNavigation: FC<IProps> = ({
       colorScheme="brand"
       pb={{ base: 2.5, md: 0 }}
       overflowX="auto"
+      backgroundColor="rytuGreen.50"
+      borderColor="rytuGreen.50"
+      borderRadius="50px"
     >
       <TabList gap={4}>
         {tabs.map((tab, index) => (
@@ -83,6 +86,13 @@ const UserProfileNavigation: FC<IProps> = ({
             href={tab.href}
             whiteSpace="nowrap"
             gap={2}
+            _selected={{
+              backgroundColor: 'rytuRed.50', 
+              color: 'white', 
+              borderColor: 'rytuRed.50', 
+              borderRadius: '50px', 
+              padding: '0 25px'
+            }}
           >
             <Text as="span" variant="subtitle1">
               {tab.title}
