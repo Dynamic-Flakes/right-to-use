@@ -20,20 +20,20 @@ const RectangularBanner = () => {
         color="white"
         p={4}
         align="center"
-        width="85%" 
+        w={{ base: '100%', lg: '85%' }}
         h="300px"
         position="relative"
         borderRadius="15px"
     >
       <Box flex="1" paddingLeft="20px">
-        <Text fontSize="30px" fontWeight="900" lineHeight="40px">Get or Give the Right to Use a Copywrited <br/>Work</Text>
+        <Text fontSize="30px" fontWeight="900" lineHeight="40px" maxW="350px">Get or Give the Right to Use a Copywrited <br/>Work</Text>
         <Box display="flex" gap="10px" mt="15px">
-            <Button variant="outline" colorScheme="white">Give the RYTU</Button>
-            <Button variant="outline" colorScheme="white">Get the RYTU</Button>
+            <Button variant="outline" colorScheme="white">Mint a RYTU</Button>
+            <Button variant="outline" colorScheme="white">Get a RYTU</Button>
         </Box>
       </Box>
       
-      <Box flex="1">
+      <Box flex="1" display={{ base: 'none', md: 'block' }}>
         <Flex direction="column" mt={4} position="relative">
             <Image 
                 src="/images/banner-nft-research.png" 
@@ -88,6 +88,7 @@ const RectangularBanner = () => {
 const SquareBanner = () => {
   return (
     <Box 
+        display={{ base: 'none', lg: 'flex' }}
         bgImage="url('/images/banner-nft-2.png')"
         bgSize="cover"
         bgPosition="center"
@@ -96,7 +97,6 @@ const SquareBanner = () => {
         p={4}
         textAlign="center"
         borderRadius="15px"
-        display="flex"
         justifyContent="center"
         alignItems="center"
     >

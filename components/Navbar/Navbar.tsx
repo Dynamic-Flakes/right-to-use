@@ -124,7 +124,7 @@ const DrawerMenu: FC<{
               <img
                 src={LOGO}
                 alt={META_COMPANY_NAME}
-                style={{ height: '32px' }}
+                style={{ maxHeight: '38px' }}
               />
             </Link>
           </DrawerHeader>
@@ -425,7 +425,7 @@ const Navbar: FC<{
             <img
               src={LOGO}
               alt={META_COMPANY_NAME}
-              style={{ height: '32px' }}
+              style={{ maxHeight: '38px' }}
             />
           </Flex>
         </Flex>
