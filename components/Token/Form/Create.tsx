@@ -210,6 +210,7 @@ const TokenFormCreate: FC<Props> = ({
           {...register('name', {
             required: t('token.form.create.validation.required'),
           })}
+          borderColor="rytuGreen.100"
         />
         {errors.name && (
           <FormErrorMessage>{errors.name.message}</FormErrorMessage>
@@ -229,6 +230,7 @@ const TokenFormCreate: FC<Props> = ({
           placeholder={t('token.form.create.description.placeholder')}
           {...register('description')}
           rows={5}
+          borderColor="rytuGreen.100"
         />
       </FormControl>
       {collection.standard === 'ERC1155' && (
@@ -258,6 +260,7 @@ const TokenFormCreate: FC<Props> = ({
                     }
                   },
                 })}
+                borderColor="rytuGreen.100"
               />
               <NumberInputStepper>
                 <NumberIncrementStepper />
@@ -311,6 +314,7 @@ const TokenFormCreate: FC<Props> = ({
                   }
                 },
               })}
+              borderColor="rytuGreen.100"
             />
             <NumberInputStepper>
               <NumberIncrementStepper />

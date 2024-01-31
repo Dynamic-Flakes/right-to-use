@@ -39,11 +39,29 @@ const CreatePage: NextPage = () => {
 
   return (
     <Layout>
+      <Flex 
+        backgroundColor="rytuGreen.50" 
+        position="absolute" 
+        top="0" 
+        w="100vw" 
+        minHeight={{ base: '44vh', sm: '54vh'}}
+        left="0" 
+        zIndex="-2"
+      >
+      </Flex>
+
       <BackButton onClick={back} />
-      <Heading as="h1" variant="title" color="brand.black" mt={6}>
+      <Heading as="h1" variant="title" color="rytuRed.50" mt={6}>
         {t('asset.typeSelector.title')}
       </Heading>
-      <Text as="p" variant="text" color="gray.500" mt={3}>
+      <Text as="p" variant="text" 
+        color="rytuGreen.200" 
+        padding="10px"
+        borderRadius="10px"
+        backgroundColor="#ffffff3b"
+        boxShadow="0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)"
+        textAlign="center"
+        mt={3}>
         {t('asset.typeSelector.description')}
       </Text>
       <Flex

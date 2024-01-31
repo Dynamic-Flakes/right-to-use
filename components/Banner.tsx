@@ -26,10 +26,10 @@ const RectangularBanner = () => {
         borderRadius="15px"
     >
       <Box flex="1" paddingLeft="20px">
-        <Text fontSize="30px" fontWeight="900" lineHeight="40px" maxW="350px">Get or Give the Right to Use a Copywrited <br/>Work</Text>
+        <Text fontSize="30px" fontWeight="900" lineHeight="40px" maxW="350px">Get or Give the Right to Use a Copyrighted <br/>Work</Text>
         <Box display="flex" gap="10px" mt="15px">
-            <Button variant="outline" colorScheme="white">Mint a RYTU</Button>
-            <Button variant="outline" colorScheme="white">Get a RYTU</Button>
+            <Button variant="outline" colorScheme="white">Give the RYTU</Button>
+            <Button variant="outline" colorScheme="white">Get the RYTU</Button>
         </Box>
       </Box>
       

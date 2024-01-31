@@ -9,6 +9,24 @@ const BackButton: FC<ButtonProps> = ({ children, ...props }) => {
     <Button
       variant="outline"
       colorScheme="gray"
+      backgroundColor="rytuGreen.50"
+      borderColor="rytuRed.50"
+      css={{
+        '&:focus': {
+          border: '1px solid',
+          borderColor: '#e33047',
+          backgroundColor: '#e33047',
+          color: 'white',
+          outline: 'none',
+        },
+        '&:hover': {
+          border: '1px solid',
+          borderColor: '#e33047',
+          backgroundColor: '#e33047',
+          color: 'white',
+          outline: 'none',
+        },
+      }}
       leftIcon={<HiOutlineArrowLeft />}
       {...props}
     >

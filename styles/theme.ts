@@ -65,7 +65,7 @@ export const baseTheme = extendTheme({
           bg: 'white',
           border: '1px solid',
           borderRadius: '4px',
-          borderColor: 'gray.200',
+          borderColor: 'rytuGreen.100',
           color: 'white',
 
           _checked: {

@@ -102,60 +102,94 @@ const CreatePage: NextPage = () => {
 
   if (collection === null) return <Error statusCode={404} />
   return (
-    <SmallLayout>
-      <Head
-        title="Create Collectible"
-        description="Create Collectible securely stored on blockchain"
-      />
-      <BackButton onClick={back} />
-      <Heading as="h1" variant="title" color="brand.black" mt={6}>
-        {!collection ? (
-          <Skeleton height="1em" width="50%" />
-        ) : collection.standard === 'ERC1155' ? (
-          t('asset.form.title.multiple')
-        ) : (
-          t('asset.form.title.single')
-        )}
-      </Heading>
+    <>
+      <SmallLayout>
+        <Head
+          title="Create Collectible"
+          description="Create Collectible securely stored on blockchain"
+        />
+        <BackButton onClick={back} />
+        <Heading as="h1" variant="title" color="rytuRed.50" mt={6}>
+          {!collection ? (
+            <Skeleton height="1em" width="50%" />
+          ) : collection.standard === 'ERC1155' ? (
+            t('asset.form.title.multiple')
+          ) : (
+            t('asset.form.title.single')
+          )}
+        </Heading>
 
-      <Grid
-        mt={12}
-        mb={6}
-        gap={12}
-        templateColumns={{ base: '1fr', md: '1fr 2fr' }}
-      >
-        <GridItem overflow="hidden">
-          <Flex as={Text} color="brand.black" mb={3} variant="button1">
-            {t('asset.form.preview')}
-          </Flex>
-          <Box pointerEvents="none">
-            {!asset ? (
-              <SkeletonTokenCard />
+        <Grid
+          mt={12}
+          mb={6}
+          gap={12}
+          templateColumns={{ base: '1fr', md: '1fr 2fr' }}
+          position="relative"
+          backgroundColor="#ffffff38"
+          padding="20px"
+          borderRadius="15px"
+          border="1px solid"
+          borderColor="rytuRed.50"
+        >
+          <>
+            <Flex 
+                backgroundColor="rytuRed.50" 
+                position="absolute" 
+                top="100px" 
+                w="120%" 
+                minHeight={{ base: '10vh', sm: '18vh'}}
+                left="-10%" 
+                zIndex="-2"
+                display="flex"
+                transform="rotate(5deg) skew(-35deg, -13deg)"
+              >
+            </Flex>
+            <Flex 
+              backgroundColor="rytuGreen.50" 
+              position="absolute" 
+              top="100px" 
+              w="120%" 
+              minHeight={{ base: '10vh', sm: '18vh'}}
+              left="-10%" 
+              zIndex="-2"
+              display="flex"
+              transform="rotate(-5deg) skew(-25deg, -10deg)"
+            >
+            </Flex>
+          </>
+          <GridItem overflow="hidden">
+            <Flex as={Text} color="brand.black" mb={3} variant="button1">
+              {t('asset.form.preview')}
+            </Flex>
+            <Box pointerEvents="none">
+              {!asset ? (
+                <SkeletonTokenCard />
+              ) : (
+                <TokenCard
+                  asset={{
+                    ...asset,
+                    creator,
+                    bestBid: { nodes: [] },
+                    firstSale: undefined,
+                  }}
+                />
+              )}
+            </Box>
+          </GridItem>
+          <GridItem overflow="hidden">
+            {!collection ? (
+              <SkeletonForm items={4} />
             ) : (
-              <TokenCard
-                asset={{
-                  ...asset,
-                  creator,
-                  bestBid: { nodes: [] },
-                  firstSale: undefined,
-                }}
+              <TokenFormCreate
+                collection={collection}
+                onCreated={onCreated}
+                onInputChange={setFormData}
               />
             )}
-          </Box>
-        </GridItem>
-        <GridItem overflow="hidden">
-          {!collection ? (
-            <SkeletonForm items={4} />
-          ) : (
-            <TokenFormCreate
-              collection={collection}
-              onCreated={onCreated}
-              onInputChange={setFormData}
-            />
-          )}
-        </GridItem>
-      </Grid>
-    </SmallLayout>
+          </GridItem>
+        </Grid>
+      </SmallLayout>
+    </>
   )
 }
 

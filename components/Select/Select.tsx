@@ -111,7 +111,7 @@ const Select = <T,>({
               borderWidth="1px"
               color={error ? 'red.900' : 'brand.black'}
               w={selectWidth ? selectWidth : 'full'}
-              borderColor={!error ? 'gray.200' : 'red.300'}
+              borderColor={!error ? 'rytuGreen.100' : 'red.300'}
               _focus={{
                 ring: 1,
                 ringColor: !error ? 'brand.500' : 'red.500',

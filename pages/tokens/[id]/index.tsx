@@ -143,7 +143,7 @@ const DetailPage: NextPage<Props> = ({ now: nowProp }) => {
   if (asset === null) return <Error statusCode={404} />
   return (
     <LargeLayout>
-      <Flex backgroundColor="rytuGreen.50" position="absolute" top="0" w="100vw" minH="74vh"
+      <Flex backgroundColor="rytuGreen.50" position="absolute" top="0" w="100vw" minHeight={{ base: '54vh', sm: '74vh'}}
         left="0" zIndex="-2"></Flex>
       <Head
         title={asset ? `${asset.name} - ${asset.collection.name}` : undefined}
@@ -152,12 +152,9 @@ const DetailPage: NextPage<Props> = ({ now: nowProp }) => {
       />
       <Box>
         <SimpleGrid 
-          // spacing={6} 
           columnGap={6}
           columns={{ md: 2 }}
-          // backgroundColor="rytuGreen.50"
           margin="-40px 0px 20px"
-          // padding="10px 30px"
         >
           <AspectRatio ratio={1}>
             <Center
@@ -182,7 +179,7 @@ const DetailPage: NextPage<Props> = ({ now: nowProp }) => {
               )}
             </Center>
           </AspectRatio>
-          <Flex direction="column" my="auto" gap={8} p={{ base: 6, md: 0 }}>
+          <Flex direction="column" my="auto" gap={8} p={{ base: 0, md: 0 }}>
             <Flex justify="space-between">
               <Stack spacing={1}>
                 <Heading
@@ -268,7 +265,7 @@ const DetailPage: NextPage<Props> = ({ now: nowProp }) => {
         <SimpleGrid spacing={6} columns={{ md: 2 }}>
           {asset && (
             <>
-              <Stack p={6} spacing={6}>
+              <Stack p={6}  px={{ base: '0px', sm: '6'}} spacing={6}>
                 {asset.description && (
                   <Stack spacing={3}>
                     <Heading as="h4" variant="heading2" color="brand.black">
