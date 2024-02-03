@@ -245,6 +245,17 @@ const OfferFormBid: FC<Props> = ({ asset, currencies, onCreated }) => {
                     })
                 },
               })}
+              borderColor="rytuGreen.100"
+              boxShadow="none !important"
+              css={{
+                '&:focus': {
+                  outline: 'none',
+                },
+                '&:focus-visible': {
+                  outline: 'none',
+                  boxShadow: 'none',
+                },
+              }}
             />
             <NumberInputStepper>
               <NumberIncrementStepper />
@@ -306,6 +317,17 @@ const OfferFormBid: FC<Props> = ({ asset, currencies, onCreated }) => {
                     }
                   },
                 })}
+                borderColor="rytuGreen.100"
+                boxShadow="none !important"
+                css={{
+                  '&:focus': {
+                    outline: 'none',
+                  },
+                  '&:focus-visible': {
+                    outline: 'none',
+                    boxShadow: 'none',
+                  },
+                }}
               />
               <NumberInputStepper>
                 <NumberIncrementStepper />
@@ -363,6 +385,17 @@ const OfferFormBid: FC<Props> = ({ asset, currencies, onCreated }) => {
           type="datetime-local"
           min={minDate}
           max={maxDate}
+          borderColor="rytuGreen.100"
+          boxShadow="none !important"
+          css={{
+            '&:focus': {
+              outline: 'none',
+            },
+            '&:focus-visible': {
+              outline: 'none',
+              boxShadow: 'none',
+            },
+          }}
         />
         {errors.expiredAt && (
           <FormErrorMessage>{errors.expiredAt.message}</FormErrorMessage>

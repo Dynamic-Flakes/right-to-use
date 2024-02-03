@@ -75,7 +75,7 @@ const TraitList: FC<TraitListProps> = ({
             variant="subtitle2"
             color="rytuRed.50"
           >
-            Get NFT to Unlocked Content 
+            Get NFT to Unlock Content 
           </Text> : 
             <Text
               as="span"
