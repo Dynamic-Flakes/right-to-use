@@ -136,7 +136,7 @@ const CreatePage: NextPage = () => {
                 backgroundColor="rytuRed.50" 
                 position="absolute" 
                 top="100px" 
-                w="120%" 
+                w={{ base: '110%', sm: '120%'}} 
                 minHeight={{ base: '10vh', sm: '18vh'}}
                 left="-10%" 
                 zIndex="-2"
@@ -148,7 +148,7 @@ const CreatePage: NextPage = () => {
               backgroundColor="rytuGreen.50" 
               position="absolute" 
               top="100px" 
-              w="120%" 
+              w={{ base: '105%', sm: '120%'}}  
               minHeight={{ base: '10vh', sm: '18vh'}}
               left="-10%" 
               zIndex="-2"

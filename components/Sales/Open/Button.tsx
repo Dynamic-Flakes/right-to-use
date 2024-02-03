@@ -22,6 +22,7 @@ const SaleOpenButton: FC<Props> = ({ assetId, isHomepage, ownAllSupply }) => {
         colorScheme="gray"
         bgColor="white"
         size="lg"
+        borderColor="rytuGreen.200"
         rightIcon={<Icon as={HiArrowNarrowRight} />}
         width="full"
       >

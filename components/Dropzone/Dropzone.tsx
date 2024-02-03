@@ -175,7 +175,10 @@ const Dropzone: FC<IProps> = ({
             preview ? 'transparent' : withPlaceholder ? 'gray.100' : undefined
           }
           visibility={
-            file?.type.startsWith('video/') || (!file && !withPlaceholder)
+            file?.type.startsWith('video/') || 
+            file?.type.startsWith('audio/') ||
+            file?.type.startsWith('application/') ||
+            (!file && !withPlaceholder)
               ? 'hidden'
               : undefined
           }
@@ -210,7 +213,7 @@ const Dropzone: FC<IProps> = ({
           <Heading
             as="span"
             variant="heading3"
-            color="gray.500"
+            color="rytuGreen.100"
             w="full"
             textAlign="center"
             isTruncated

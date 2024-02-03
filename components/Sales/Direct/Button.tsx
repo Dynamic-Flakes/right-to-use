@@ -112,6 +112,7 @@ const SaleDirectButton: FC<Props> = ({
         href={`/tokens/${assetId}/bid`}
         variant={cancel ? 'solid' : 'outline'}
         colorScheme={cancel ? undefined : 'gray'}
+        borderColor="rytuGreen.200"
         size="lg"
         width="full"
       >
@@ -159,6 +160,7 @@ const SaleDirectButton: FC<Props> = ({
         bgColor="white"
         width="full"
         rightIcon={<HiArrowNarrowRight />}
+        borderColor="rytuGreen.200"
       >
         <Text as="span" isTruncated>
           {t('sales.direct.button.view')}

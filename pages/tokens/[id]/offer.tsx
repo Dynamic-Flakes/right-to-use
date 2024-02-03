@@ -91,7 +91,11 @@ const OfferPage: NextPage<Props> = ({ now }) => {
           </Box>
         </GridItem>
         <GridItem>
-          <Flex direction="column" gap={8} grow={1} shrink={1} basis="0%">
+          <Flex direction="column" gap={8} grow={1} shrink={1} basis="0%" 
+          boxShadow="0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)" 
+          padding="20px" 
+          borderRadius="15px"
+          >
             {!currencies || !asset ? (
               <SkeletonForm items={2} />
             ) : (

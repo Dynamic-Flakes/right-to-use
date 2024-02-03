@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Flex, Image, Text, keyframes } from '@chakra-ui/react';
+import { Box, Button, Flex, Image, Link, Text, keyframes } from '@chakra-ui/react';
 
 const RectangularBanner = () => {
     const bounceKeyframes = keyframes`
@@ -28,8 +28,12 @@ const RectangularBanner = () => {
       <Box flex="1" paddingLeft="20px">
         <Text fontSize="30px" fontWeight="900" lineHeight="40px" maxW="350px">Get or Give the Right to Use a Copyrighted <br/>Work</Text>
         <Box display="flex" gap="10px" mt="15px">
-            <Button variant="outline" colorScheme="white">Give the RYTU</Button>
-            <Button variant="outline" colorScheme="white">Get the RYTU</Button>
+            <Link href="/create">
+              <Button variant="outline" colorScheme="white" >Give the RYTU</Button>
+            </Link>
+            <Link href="/explore">
+              <Button variant="outline" colorScheme="white">Get the RYTU</Button>
+            </Link>
         </Box>
       </Box>
       

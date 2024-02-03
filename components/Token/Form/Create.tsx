@@ -1,4 +1,8 @@
 import {
+  Box,
+  Checkbox,
+  Divider,
+  Flex,
   FormControl,
   FormErrorMessage,
   FormHelperText,
@@ -7,6 +11,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Link,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -21,13 +26,13 @@ import {
 import { toAddress } from '@liteflow/core'
 import { CreateNftStep, useCreateNFT } from '@liteflow/react'
 import useTranslation from 'next-translate/useTranslation'
-import { FC, useEffect, useMemo } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
 import { Standard } from '../../../graphql'
 import useBlockExplorer from '../../../hooks/useBlockExplorer'
 import useEnvironment from '../../../hooks/useEnvironment'
 import useSigner from '../../../hooks/useSigner'
-import { values as traits } from '../../../traits'
+import { mediaTypeObject, values as traits } from '../../../traits'
 import { formatError } from '../../../utils'
 import ConnectButtonWithNetworkSwitch from '../../Button/ConnectWithNetworkSwitch'
 import Dropzone from '../../Dropzone/Dropzone'
@@ -43,6 +48,13 @@ export type FormData = {
   content: File | undefined
   preview: File | undefined
   isAnimation: boolean
+  copyright: boolean
+  licenseType: string
+  mediaType: string
+  licenseDuration: string
+  usageRestrictions: string
+  assetPreview: string
+  actualAsset: string
 }
 
 type Props = {
@@ -74,7 +86,7 @@ const TokenFormCreate: FC<Props> = ({
     control,
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     setValue,
   } = useForm<FormData>({
     defaultValues: {
@@ -84,12 +96,18 @@ const TokenFormCreate: FC<Props> = ({
   })
   const res = useWatch({ control })
   useEffect(() => onInputChange(res), [res, onInputChange])
+  const [selectedMediaType, setSelectedMediaType] = useState('');
 
   // const [transform] = useFileTransformer()
   const [createNFT, { activeStep, transactionHash }] = useCreateNFT(signer)
 
-  const categories = useMemo(
-    () => (traits['Category'] || []).map((x) => ({ id: x, title: x })) || [],
+  const mediaType = useMemo(
+    () => (traits['MediaType'] || []).map((x) => ({ id: x.mediaType, title: x.mediaType })) || [],
+    [],
+  )
+
+  const licenseType = useMemo(
+    () => (traits['LicenseType'] || []).map((x) => ({ id: x, title: x })) || [],
     [],
   )
 
@@ -114,7 +132,14 @@ const TokenFormCreate: FC<Props> = ({
           metadata: {
             name: data.name,
             description: data.description,
-            attributes: [{ traitType: 'Category', value: data.category }],
+            attributes: [
+              { traitType: 'Media Type', value: data.mediaType },
+              { traitType: 'License Type', value: data.licenseType },
+              { traitType: 'License Duration', value: data.licenseDuration },
+              { traitType: 'Usage Restrictions', value: data.usageRestrictions },
+              { traitType: 'Unlockable Content Preview', value: data.assetPreview },
+              { traitType: 'Unlockable Content', value: data.actualAsset },
+            ],
             media: {
               content: data.content,
               preview: data.preview,
@@ -211,6 +236,16 @@ const TokenFormCreate: FC<Props> = ({
             required: t('token.form.create.validation.required'),
           })}
           borderColor="rytuGreen.100"
+          boxShadow="none !important"
+          css={{
+            '&:focus': {
+              outline: 'none',
+            },
+            '&:focus-visible': {
+              outline: 'none',
+              boxShadow: 'none',
+            },
+          }}
         />
         {errors.name && (
           <FormErrorMessage>{errors.name.message}</FormErrorMessage>
@@ -231,6 +266,16 @@ const TokenFormCreate: FC<Props> = ({
           {...register('description')}
           rows={5}
           borderColor="rytuGreen.100"
+          boxShadow="none !important"
+          css={{
+            '&:focus': {
+              outline: 'none',
+            },
+            '&:focus-visible': {
+              outline: 'none',
+              boxShadow: 'none',
+            },
+          }}
         />
       </FormControl>
       {collection.standard === 'ERC1155' && (
@@ -261,6 +306,16 @@ const TokenFormCreate: FC<Props> = ({
                   },
                 })}
                 borderColor="rytuGreen.100"
+                boxShadow="none !important"
+                css={{
+                  '&:focus': {
+                    outline: 'none',
+                  },
+                  '&:focus-visible': {
+                    outline: 'none',
+                    boxShadow: 'none',
+                  },
+                }}
               />
               <NumberInputStepper>
                 <NumberIncrementStepper />
@@ -315,6 +370,16 @@ const TokenFormCreate: FC<Props> = ({
                 },
               })}
               borderColor="rytuGreen.100"
+              boxShadow="none !important"
+              css={{
+                '&:focus': {
+                  outline: 'none',
+                },
+                '&:focus-visible': {
+                  outline: 'none',
+                  boxShadow: 'none',
+                },
+              }}
             />
             <NumberInputStepper>
               <NumberIncrementStepper />
@@ -329,23 +394,274 @@ const TokenFormCreate: FC<Props> = ({
           <FormErrorMessage>{errors.royalties.message}</FormErrorMessage>
         )}
       </FormControl>
+      
       <Select
-        label={t('token.form.create.category.label')}
-        name="category"
+        label={t('token.form.create.mediaType.label')}
+        name="mediaType"
         control={control}
-        placeholder={t('token.form.create.category.placeholder')}
-        choices={categories.map((x) => ({
+        placeholder={t('token.form.create.mediaType.placeholder')}
+        choices={mediaType.map((x) => ({
           value: x.id,
           label: x.title,
         }))}
-        value={res.category}
+        value={res.mediaType}
+        onChange={(x) => setSelectedMediaType(`${x}`)}
         required
-        error={errors.category}
+        error={errors.mediaType}
       />
+
+      {selectedMediaType && 
+      <Flex
+        padding="10px 15px"
+        backgroundColor="#eeeeeea1"
+        borderRadius="10px"
+        mt="-35px"
+        color="brand.black"
+        gap="10px"
+      >
+        <Box fontWeight="600">
+        {selectedMediaType}:
+        </Box>
+        {mediaTypeObject[selectedMediaType]}
+      </Flex>}
+
+
+      <Select
+        label={t('token.form.create.licenseType.label')}
+        name="licenseType"
+        control={control}
+        placeholder={t('token.form.create.licenseType.placeholder')}
+        choices={licenseType.map((x) => ({
+          value: x.id,
+          label: x.title,
+        }))}
+        value={res.licenseType}
+        required
+        error={errors.licenseType}
+      />
+
+      <FormControl isInvalid={!!errors.licenseDuration}>
+          <HStack spacing={1} mb={2}>
+            <FormLabel htmlFor="licenseDuration" m={0}>
+              {t('token.form.create.licenseDuration.label')}
+            </FormLabel>
+            <FormHelperText m={0}>
+              {t('token.form.create.licenseDuration.info')}
+            </FormHelperText>
+          </HStack>
+          <InputGroup>
+            <NumberInput
+              clampValueOnBlur={false}
+              min={1}
+              allowMouseWheel
+              w="full"
+              onChange={(x) => setValue('licenseDuration', x)}
+            >
+              <NumberInputField
+                id="licenseDuration"
+                placeholder={t('token.form.create.licenseDuration.placeholder')}
+                {...register('licenseDuration', {
+                  required: t('token.form.create.validation.required'),
+                  validate: (value) => {
+                    if (parseFloat(value) < 1) {
+                      return t('token.form.create.validation.positive')
+                    }
+                    if (!/^\d+$/.test(value)) {
+                      return t('token.form.create.validation.integer')
+                    }
+                  },
+                })}
+                borderColor="rytuGreen.100"
+                boxShadow="none !important"
+                css={{
+                  '&:focus': {
+                    outline: 'none',
+                  },
+                  '&:focus-visible': {
+                    outline: 'none',
+                    boxShadow: 'none',
+                  },
+                }}
+              />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+          </InputGroup>
+          {errors.amount && (
+            <FormErrorMessage>{errors.amount.message}</FormErrorMessage>
+          )}
+      </FormControl>
+
+      <FormControl>
+        <HStack spacing={1} mb={2}>
+          <FormLabel htmlFor="usageRestrictions" m={0}>
+            {t('token.form.create.usageRestrictions.label')}
+          </FormLabel>
+          <FormHelperText m={0}>
+            {t('token.form.create.usageRestrictions.info')}
+          </FormHelperText>
+        </HStack>
+        <Textarea
+          id="usageRestrictions"
+          placeholder={t('token.form.create.usageRestrictions.placeholder')}
+          {...register('usageRestrictions')}
+          rows={5}
+          borderColor="rytuGreen.100"
+          boxShadow="none !important"
+          css={{
+            '&:focus': {
+              outline: 'none',
+            },
+            '&:focus-visible': {
+              outline: 'none',
+              boxShadow: 'none',
+            },
+          }}
+        />
+      </FormControl>
+
+      {/* <Divider></Divider> */}
+
+      <FormControl isInvalid={!!errors.assetPreview}>
+        <FormLabel htmlFor="assetPreview">
+          {t('token.form.create.assetPreview.label')}
+        </FormLabel>
+        <Input
+          id="assetPreview"
+          placeholder={t('token.form.create.assetPreview.placeholder')}
+          {...register('assetPreview')}
+          borderColor="rytuGreen.100"
+          boxShadow="none !important"
+          css={{
+            '&:focus': {
+              outline: 'none',
+            },
+            '&:focus-visible': {
+              outline: 'none',
+              boxShadow: 'none',
+            },
+          }}
+        />
+        {errors.name && (
+          <FormErrorMessage>{errors.assetPreview?.message}</FormErrorMessage>
+        )}
+      </FormControl>
+
+      <FormControl isInvalid={!!errors.actualAsset}>
+        <FormLabel htmlFor="actualAsset">
+          {t('token.form.create.actualAsset.label')}
+        </FormLabel>
+        <Input
+          id="actualAsset"
+          placeholder={t('token.form.create.actualAsset.placeholder')}
+          {...register('actualAsset', {
+            required: t('token.form.create.validation.required'),
+          })}
+          borderColor="rytuGreen.100"
+          boxShadow="none !important"
+          css={{
+            '&:focus': {
+              outline: 'none',
+            },
+            '&:focus-visible': {
+              outline: 'none',
+              boxShadow: 'none',
+            },
+          }}
+        />
+        {errors.name && (
+          <FormErrorMessage>{errors.actualAsset?.message}</FormErrorMessage>
+        )}
+      </FormControl>
+
+      {/* <Dropzone
+        label={t('token.form.create.assetPreview.label')}
+        heading={t('token.form.create.assetPreview.heading')}
+        hint={t('token.form.create.assetPreview.hint')}
+        name="assetPreview"
+        acceptTypes={{
+          'image/*': ['.jpg', '.jpeg', '.png', '.gif', '.webp'],
+          'video/*': ['.mp4', '.webm'],
+          'audio/*': ['.mp3', '.wav'],
+          'application/*': ['.pdf', '.doc', '.docx'],
+        }}
+        maxSize={100000000} // 100 MB
+        required
+        control={control}
+        error={errors.assetPreview}
+        onChange={(e) => handleFileDrop(e as unknown as File)}
+        value={res.assetPreview as any}
+        context={{
+          replace: t('token.form.create.assetPreview.file.replace'),
+          chose: t('token.form.create.assetPreview.file.chose'),
+        }}
+      /> */}
+
+      {/* <Dropzone
+        label={t('token.form.create.actualAsset.label')}
+        heading={t('token.form.create.actualAsset.heading')}
+        hint={t('token.form.create.actualAsset.hint')}
+        name="actualAsset"
+        acceptTypes={{
+          'image/*': ['.jpg', '.jpeg', '.png', '.gif', '.webp'],
+          'video/*': ['.mp4', '.webm'],
+          'audio/*': ['.mp3', '.wav'],
+          'application/*': ['.pdf', '.doc', '.docx'],
+        }}
+        maxSize={100000000} // 100 MB
+        required
+        control={control}
+        error={errors.actualAsset}
+        onChange={(e) => handleFileDrop(e as unknown as File)}
+        value={res.actualAsset as any}
+        context={{
+          replace: t('token.form.create.actualAsset.file.replace'),
+          chose: t('token.form.create.actualAsset.file.chose'),
+        }}
+      /> */}
+
+      {/* <Divider></Divider> */}
+
+      <Stack>
+        <FormControl isInvalid={!!errors.copyright}>
+          <Checkbox
+            id="copyright"
+            {...register('copyright', { required: 'Title is required' })}
+            borderColor="rytuGreen.100"
+          >
+            I confirm that I am the copyright holder
+          </Checkbox>
+          {errors.copyright && (
+            <FormErrorMessage>{errors.copyright.message}</FormErrorMessage>
+          )}
+        </FormControl>
+
+        <FormControl isInvalid={!!errors.copyright}>
+          <Checkbox
+            id="copyright"
+            {...register('copyright', { required: 'Title is required' })}
+            borderColor="rytuGreen.100"
+          >
+            By continuing, I certify that I am 18 years of age, and I agree to the 
+              &nbsp;
+              <Link color="rytuRed.50">Terms of Use</Link> and  
+              &nbsp;
+              <Link color="rytuRed.50">Privacy Policy</Link>.
+          </Checkbox>
+          {errors.copyright && (
+            <FormErrorMessage>{errors.copyright.message}</FormErrorMessage>
+          )}
+        </FormControl>
+      </Stack>
+
+
       <ConnectButtonWithNetworkSwitch
         chainId={collection.chainId}
         isLoading={activeStep !== CreateNftStep.INITIAL}
         type="submit"
+        disabled={!isValid}
       >
         <Text as="span" isTruncated>
           {t('token.form.create.submit')}

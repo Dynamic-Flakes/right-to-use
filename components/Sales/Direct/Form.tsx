@@ -270,6 +270,17 @@ const SalesDirectForm: FC<Props> = ({ asset, currencies, onCreated }) => {
                   }
                 },
               })}
+              borderColor="rytuGreen.100"
+              boxShadow="none !important"
+              css={{
+                '&:focus': {
+                  outline: 'none',
+                },
+                '&:focus-visible': {
+                  outline: 'none',
+                  boxShadow: 'none',
+                },
+              }}
             />
             <NumberInputStepper>
               <NumberIncrementStepper />
@@ -333,6 +344,17 @@ const SalesDirectForm: FC<Props> = ({ asset, currencies, onCreated }) => {
                     }
                   },
                 })}
+                borderColor="rytuGreen.100"
+                boxShadow="none !important"
+                css={{
+                  '&:focus': {
+                    outline: 'none',
+                  },
+                  '&:focus-visible': {
+                    outline: 'none',
+                    boxShadow: 'none',
+                  },
+                }}
               />
               <NumberInputStepper>
                 <NumberIncrementStepper />
@@ -394,6 +416,17 @@ const SalesDirectForm: FC<Props> = ({ asset, currencies, onCreated }) => {
           {...register('expiredAt', {
             required: t('sales.direct.form.validation.required'),
           })}
+          borderColor="rytuGreen.100"
+          boxShadow="none !important"
+          css={{
+            '&:focus': {
+              outline: 'none',
+            },
+            '&:focus-visible': {
+              outline: 'none',
+              boxShadow: 'none',
+            },
+          }}
         />
         {errors.expiredAt && (
           <FormErrorMessage>{errors.expiredAt.message}</FormErrorMessage>

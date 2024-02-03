@@ -1,7 +1,7 @@
 import { Flex, SimpleGrid, Text } from '@chakra-ui/react'
 import Link from 'components/Link/Link'
 import useTranslation from 'next-translate/useTranslation'
-import { FC, useCallback } from 'react'
+import { FC, useCallback, useEffect } from 'react'
 
 type TraitListProps = {
   asset: {
@@ -18,6 +18,7 @@ type TraitListProps = {
       numberOfAssets: number
     } | null
   }[]
+  isOwner: boolean
 }
 
 const TraitList: FC<TraitListProps> = ({
@@ -25,7 +26,12 @@ const TraitList: FC<TraitListProps> = ({
     collection: { address, chainId, supply },
   },
   traits,
+  isOwner
 }) => {
+  useEffect(() => {
+    console.log('xxx1', traits, isOwner);
+  }, [traits, isOwner]);
+
   const { t } = useTranslation('components')
   const href = useCallback(
     (type: string, value: string) =>
@@ -37,6 +43,7 @@ const TraitList: FC<TraitListProps> = ({
       (((numberOfAssets || 0) / supply) * 100).toFixed(2),
     [supply],
   )
+
   return (
     <SimpleGrid columns={{ base: 2, sm: 3 }} gap={3}>
       {traits.map((trait, i) => (
@@ -50,6 +57,7 @@ const TraitList: FC<TraitListProps> = ({
           borderColor="rytuGreen.100"
           p={3}
         >
+          
           <Text
             as="span"
             variant="caption"
@@ -60,15 +68,28 @@ const TraitList: FC<TraitListProps> = ({
           >
             {trait.type}
           </Text>
+         
+          {(trait.type == "Unlockable Content" && !isOwner ? 
           <Text
             as="span"
             variant="subtitle2"
-            color="brand.black"
-            title={trait.value}
-            isTruncated
+            color="rytuRed.50"
           >
-            {trait.value}
-          </Text>
+            Get NFT to Unlocked Content 
+          </Text> : 
+            <Text
+              as="span"
+              variant="subtitle2"
+              color={trait.type == "Unlockable Content"? "rytuRed.50": "brand.black"}
+              title={trait.value}
+              isTruncated
+            >
+              <Link href={trait.value}>
+                  {trait.value}
+              </Link>
+            </Text>
+          )}
+
           <Text
             as="span"
             variant="caption"

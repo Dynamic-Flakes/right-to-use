@@ -133,6 +133,16 @@ const Select = <T,>({
                         rounded="full"
                         borderWidth="1px"
                         borderColor="rytuGreen.100"
+                        boxShadow="none !important"
+                        css={{
+                          '&:focus': {
+                            outline: 'none',
+                          },
+                          '&:focus-visible': {
+                            outline: 'none',
+                            boxShadow: 'none !important',
+                          },
+                        }}
                       >
                         <Image
                           src={selectedChoice.image}
@@ -198,6 +208,16 @@ const Select = <T,>({
                           rounded="full"
                           borderWidth="1px"
                           borderColor="rytuGreen.100"
+                          boxShadow="none !important"
+                          css={{
+                            '&:focus': {
+                              outline: 'none',
+                            },
+                            '&:focus-visible': {
+                              outline: 'none',
+                              boxShadow: 'none !important',
+                            },
+                          }}
                         >
                           <Image
                             src={choice.image}
