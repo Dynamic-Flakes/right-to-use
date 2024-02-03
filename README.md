@@ -1,10 +1,12 @@
-# Marketplace template
+# Right to Use Marketplace
 
-This repository is an example of an application running on the [Liteflow](https://liteflow.com) infrastructure to showcase the uses of the infrastructure and/or be used as a starter kit to launch a product fast.
+## Summary
+## Overview
+
 
 ## Features included
 
-The Marketplace template includes the following features:
+The Right to Use Marketplace  includes the following features:
 
 - Open collections (User-generated content)
   - Mint ERC-721
@@ -12,8 +14,6 @@ The Marketplace template includes the following features:
   - Creator's royalties support
 - Homepage content customization
   - Featured NFTs
-  - Featured collections
-  - Featured users
   - Custom section with featured elements
 - Search system
   - Search NFTs
@@ -51,9 +51,7 @@ The Marketplace template includes the following features:
   - Trades history
   - Listings ("offers") management
 - User verification system (verified status)
-- Report system
-  - Report a user
-  - Report an NFT
+
 - Notifications
   - In-app notifications
   - Email notifications
@@ -121,3 +119,12 @@ The theme is based on [ChakraUI](https://chakra-ui.com/) and can be [customized]
 #### Application
 
 Your application includes default navigation, metadata, and wallets that can be updated directly from the `pages/_app.tsx` file.
+
+### Screenshots for the Deployment of the solution on Testnet using Enterprise Mode.
+
+## ERC721
+![Alt text](./diagrams/Erc721.png?raw=true "ERC721 on Testnet")
+
+## ERC1155
+![Alt text](./diagrams/Erc1155.png?raw=true "ERC1155 on Testnet")
+
