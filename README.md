@@ -16,6 +16,10 @@ The article discusses Universal Music Group's decision to remove its music from 
 ### Screenshots to represent the project
 ![Alt text](./diagrams/rightui.png?raw=true "ERC1155 on Testnet")
 
+## Live demo
+[Click to view](https://right-to-use.vercel.app/)
+
+
 ## Overview
 [Universal Music Group shocked the world when its decision to pull all its music from TikTok](https://www.forbes.com/sites/ariannajohnson/2024/01/31/will-tiktok-videos-be-muted-heres-what-to-know-after-licensing-deal-with-universal-music-ends/?sh=22ce8d40537c) , a popular social media platform, hit the internet - effective on the 31st of Jan, 2024. Although this came as a surprise to many, as most videos on TikTok will now become mute, it is only a part of an age-long challenge with using copyrighted work.
 
@@ -126,9 +130,6 @@ The Right to Use Marketplace  includes the following features:
   - Listings ("offers") management
 - User verification system (verified status)
 
-- Notifications
-  - In-app notifications
-  - Email notifications
 - NFT details
   - Chain information
   - Explorer link
@@ -223,6 +224,7 @@ npm run start  pr yarn run start
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ## Customization
 
