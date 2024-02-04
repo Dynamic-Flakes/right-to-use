@@ -13,6 +13,8 @@
 ## Summary
 ## Overview
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ## Features included
 
@@ -108,15 +110,39 @@ The Marketplace template is based on the following tech stack
 - [Next translate](https://github.com/aralroca/next-translate)
 
 ## Get started
+The easiest way to get started is to clone the repository:
 
-To get started, start by configuring your environmental variables in the `.env` file, referring to the `.env.example` file as a guide.
-For further customization, an optional option is to utilize the `environment.ts` file.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Dynamic-Flakes/right-to-use.git
+   ```
 
-Once done you can install all the dependencies with `npm i` then run
+## Change directory
 
 ```
-npm run dev
+cd right-to-use
 ```
+
+## Create .env in the root directory
+```
+Configure your environmental variables in the `.env` file, referring to the `.env.example` file as a guide.
+
+```
+
+## Install NPM packages
+Depending on your package manager, run either of these commands
+```
+   npm install
+      or
+   yarn install   
+
+```
+
+## Run the app locally
+ ```js
+   npm run dev  or yarn run dev
+   ```
+
 
 Your application is now accessible at http://localhost:3000
 
