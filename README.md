@@ -96,10 +96,11 @@ It also includes compatibility with the following features:
 - Email connection compatibility
 - Wallet-to-wallet messaging system
 
-## Libraries used
+## Tools and Libraries used
 
-The Marketplace template is based on the following tech stack
+The Right to Use Marketplace is based on the following tech stack
 
+- [Javascript](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics/)
 - [Next.js](https://nextjs.org/)
 - [React](https://reactjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
@@ -138,13 +139,28 @@ Depending on your package manager, run either of these commands
 
 ```
 
-## Run the app locally
+## Run the app locally in the development mode.
+
  ```js
    npm run dev  or yarn run dev
    ```
-
-
 Your application is now accessible at http://localhost:3000
+
+## Run the app locally in the production mode.
+First,run this to build the app. This correctly bundles in production mode and optimizes the build for the best performance.
+
+```
+npm run build  or yarn run build
+   ```
+
+Then start the application in production mode 
+
+```
+npm run start  pr yarn run start
+
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Customization
 
