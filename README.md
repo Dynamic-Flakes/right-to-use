@@ -10,6 +10,36 @@
 
 </div>
 
+
+
+## ERC721 Nft Collection on Lightlink (Pegasus Testnet)
+
+* Account: 0x94e9569211b766d2afa6f7443389e9dd96285ae5
+* Smart Contract: 0x5559f4b9bee6636ab59a0d6db46ea26ef0ea6e69
+* Enterprise Mode Enabled (https://extensions-stage.lightlink.io/whitelist-enterprise)
+
+![Alt text](./diagrams/Erc721.png?raw=true "ERC721 on Testnet")
+
+* Explore the contract on Pegasus:  
+<a href="https://pegasus.lightlink.io/address/0x5559f4b9bee6636ab59a0d6db46ea26ef0ea6e69">0x5559f4b9bee6636ab59a0d6db46ea26ef0ea6e69</a>
+
+
+
+## ERC1155 Nft Collection on Lightlink (Pegasus Testnet)
+
+* Account: 0x94e9569211b766d2afa6f7443389e9dd96285ae5
+* Smart Contract: 0xa87c6d81ea82c8e57b70782aa33cec2d53dc7b7f
+* Enterprise Mode Enabled (https://extensions-stage.lightlink.io/whitelist-enterprise)
+
+![Alt text](./diagrams/Erc1155.png?raw=true "ERC1155 on Testnet")
+
+
+
+* Explore the contract on Pegasus:  
+<a href="https://pegasus.lightlink.io/address/0xa87c6d81ea82c8e57b70782aa33cec2d53dc7b7f">0xa87c6d81ea82c8e57b70782aa33cec2d53dc7b7f9</a>
+
+
+
 ## Summary
 ## Overview
 
@@ -171,32 +201,3 @@ The theme is based on [ChakraUI](https://chakra-ui.com/) and can be [customized]
 #### Application
 
 Your application includes default navigation, metadata, and wallets that can be updated directly from the `pages/_app.tsx` file.
-
-### Screenshots for the Deployment of the solution on Testnet using Enterprise Mode.
-
-## ERC721 Nft Collection on Lightlink (Pegasus Testnet)
-
-* Account: 0x94e9569211b766d2afa6f7443389e9dd96285ae5
-* Smart Contract: 0x5559f4b9bee6636ab59a0d6db46ea26ef0ea6e69
-* Enterprise Mode Enabled (https://extensions-stage.lightlink.io/whitelist-enterprise)
-
-![Alt text](./diagrams/Erc721.png?raw=true "ERC721 on Testnet")
-
-* Explore the contract on Pegasus:  
-<a href="https://pegasus.lightlink.io/address/0x5559f4b9bee6636ab59a0d6db46ea26ef0ea6e69">0x5559f4b9bee6636ab59a0d6db46ea26ef0ea6e69</a>
-
-
-
-## ERC1155 Nft Collection on Lightlink (Pegasus Testnet)
-
-* Account: 0x94e9569211b766d2afa6f7443389e9dd96285ae5
-* Smart Contract: 0xa87c6d81ea82c8e57b70782aa33cec2d53dc7b7f
-* Enterprise Mode Enabled (https://extensions-stage.lightlink.io/whitelist-enterprise)
-
-![Alt text](./diagrams/Erc1155.png?raw=true "ERC1155 on Testnet")
-
-
-
-* Explore the contract on Pegasus:  
-<a href="https://pegasus.lightlink.io/address/0xa87c6d81ea82c8e57b70782aa33cec2d53dc7b7f">0xa87c6d81ea82c8e57b70782aa33cec2d53dc7b7f9</a>
-
