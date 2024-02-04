@@ -17,8 +17,7 @@ The article discusses Universal Music Group's decision to remove its music from 
 ![Alt text](./diagrams/rightui.png?raw=true "ERC1155 on Testnet")
 
 ## Overview
-
-Universal Music Group shocked the world when its decision to pull all its music from TikTok, a popular social media platform, hit the internet - effective on the 31st of Jan, 2024. Although this came as a surprise to many, as most videos on TikTok will now become mute, it is only a part of an age-long challenge with using copyrighted work.
+[Universal Music Group shocked the world when its decision to pull all its music from TikTok](https://www.forbes.com/sites/ariannajohnson/2024/01/31/will-tiktok-videos-be-muted-heres-what-to-know-after-licensing-deal-with-universal-music-ends/?sh=22ce8d40537c) , a popular social media platform, hit the internet - effective on the 31st of Jan, 2024. Although this came as a surprise to many, as most videos on TikTok will now become mute, it is only a part of an age-long challenge with using copyrighted work.
 
 Imagine a world where people can obtain the "Right to Use" a copyrighted work on flexible terms and for an agreed duration and price, which is also publicly verifiable. Never has there been a more suitable time where the "Right to Use" a research thesis, music piece, a stock photo, etc., can be authorized by the copyright holder with ease, at a profit, and for anyone.
 
